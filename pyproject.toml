@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "cumulus-granule-to-cnm"
+version = "0.1.0"
+description = ""
+authors = ["Hong-Kit Randy Yeung <hong-kit.r.yeung@jpl.nasa.gov>"]
+packages = [
+    { include = "cumulus_cloud_notification_message" },
+    { include = "cumulus_granule_to_cnm" }
+]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+cumulus-process = "^1.0.0"
+
+[tool.poetry.dev-dependencies]
+pytest = "^7.0.1"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
