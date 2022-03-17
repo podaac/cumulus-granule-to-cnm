@@ -1,7 +1,7 @@
+from cloudnotificationmessage import CloudNotificationMessage
 from cumulus_logger import CumulusLogger
 from cumulus_process import Process
-# todo: we'll want to use the pypi version eventually
-from cumulus_cloud_notification_message.cloudnotificationmessage import CloudNotificationMessage
+
 
 logger = CumulusLogger('granule_to_cnm_logger')
 

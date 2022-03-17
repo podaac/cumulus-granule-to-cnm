@@ -11,6 +11,7 @@ packages = [
 [tool.poetry.dependencies]
 python = "^3.8"
 cumulus-process = "^1.0.0"
+podaac-cloud-notification-message-schema = "^1.6.0"
 
 [tool.poetry.dev-dependencies]
 pytest = "^7.0.1"
