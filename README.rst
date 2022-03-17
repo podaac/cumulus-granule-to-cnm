@@ -4,6 +4,16 @@ cumulus-granule-to-cnm
 This is the python code for the lambda `cumulus-granule-to-cnm`.
 It takes in a list of Granules and converts each one to a CNM (Cloud Notification Mechanism) and returns said list.
 
+Required input
+====
+This function is intended to be used as a cumulus task and this requires ``provider`` and ``provider_path`` inputs from the ``task_config``
+::
+    "task_config": {
+        "provider": "{$.meta.provider}",
+        "provider_path": "{$.meta.provider_path}"
+    }
+
+
 Build (as a zip to load to AWS Lambda)
 ====
 `This <https://chariotsolutions.com/blog/post/building-lambdas-with-poetry/>`_ page contains some good info on the overall "building a zip with poetry that's compatible with AWS Lambda".
