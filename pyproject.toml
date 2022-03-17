@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "cumulus-granule-to-cnm"
 version = "0.1.0"
-description = ""
+description = "Basic conversion from granule to cnm"
 authors = ["Hong-Kit Randy Yeung <hong-kit.r.yeung@jpl.nasa.gov>"]
 packages = [
     { include = "cumulus_cloud_notification_message" },
