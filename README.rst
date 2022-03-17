@@ -56,3 +56,6 @@ Run the ``poetry run pytest tests -v`` command; you should see a similar output:
 
         ====== 3 passed in 0.99s ======
 
+Notes
+====
+Currently as of 2022-03-17 we're doing a manual pull of the CNM schema (cumulus_cloud_notification_message folder, sourced from https://github.com/podaac/cloud-notification-message-schema/tree/develop) and once it's available on pypi we'll convert to use that.
