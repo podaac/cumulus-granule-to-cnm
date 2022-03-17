@@ -11,20 +11,21 @@ from moto import mock_s3
 
 lambda_input = {
     "cma": {
+        "event.$": "$",
         "event": {
             "cumulus_meta": {
                 "cumulus_version": "9.9.0",
                 "message_source": "sfn",
                 "queueExecutionLimits": {
-                    "https://sqs.us-west-2.amazonaws.com/***REMOVED***/hryeung-ia-podaac-background-job-queue": 200,
-                    "https://sqs.us-west-2.amazonaws.com/***REMOVED***/hryeung-ia-podaac-backgroundProcessing": 5,
-                    "https://sqs.us-west-2.amazonaws.com/***REMOVED***/hryeung-ia-podaac-big-background-job-queue": 20,
-                    "https://sqs.us-west-2.amazonaws.com/***REMOVED***/hryeung-ia-podaac-forge-background-job-queue": 200,
-                    "https://sqs.us-west-2.amazonaws.com/***REMOVED***/hryeung-ia-podaac-tig-background-job-queue": 200
+                    "https://sqs.us-west-2.amazonaws.com/111111111111/hryeung-ia-podaac-background-job-queue": 200,
+                    "https://sqs.us-west-2.amazonaws.com/111111111111/hryeung-ia-podaac-backgroundProcessing": 5,
+                    "https://sqs.us-west-2.amazonaws.com/111111111111/hryeung-ia-podaac-big-background-job-queue": 20,
+                    "https://sqs.us-west-2.amazonaws.com/111111111111/hryeung-ia-podaac-forge-background-job-queue": 200,
+                    "https://sqs.us-west-2.amazonaws.com/111111111111/hryeung-ia-podaac-tig-background-job-queue": 200
                 },
-                "state_machine": "arn:aws:states:us-west-2:***REMOVED***:stateMachine:hryeung-ia-podaac-DiscoverWorkflow",
+                "state_machine": "arn:aws:states:us-west-2:111111111111:stateMachine:hryeung-ia-podaac-DiscoverWorkflow",
                 "system_bucket": "dummy_bucket",
-                "queueUrl": "arn:aws:sqs:us-west-2:***REMOVED***:hryeung-ia-podaac-startSF"
+                "queueUrl": "arn:aws:sqs:us-west-2:111111111111:hryeung-ia-podaac-startSF"
             },
             "replace": {
                 "Bucket": "dummy_bucket",
@@ -41,20 +42,21 @@ lambda_input = {
 
 bad_lambda_input = {
     "cma": {
+        "event.$": "$",
         "event": {
             "cumulus_meta": {
                 "cumulus_version": "9.9.0",
                 "message_source": "sfn",
                 "queueExecutionLimits": {
-                    "https://sqs.us-west-2.amazonaws.com/***REMOVED***/hryeung-ia-podaac-background-job-queue": 200,
-                    "https://sqs.us-west-2.amazonaws.com/***REMOVED***/hryeung-ia-podaac-backgroundProcessing": 5,
-                    "https://sqs.us-west-2.amazonaws.com/***REMOVED***/hryeung-ia-podaac-big-background-job-queue": 20,
-                    "https://sqs.us-west-2.amazonaws.com/***REMOVED***/hryeung-ia-podaac-forge-background-job-queue": 200,
-                    "https://sqs.us-west-2.amazonaws.com/***REMOVED***/hryeung-ia-podaac-tig-background-job-queue": 200
+                    "https://sqs.us-west-2.amazonaws.com/111111111111/hryeung-ia-podaac-background-job-queue": 200,
+                    "https://sqs.us-west-2.amazonaws.com/111111111111/hryeung-ia-podaac-backgroundProcessing": 5,
+                    "https://sqs.us-west-2.amazonaws.com/111111111111/hryeung-ia-podaac-big-background-job-queue": 20,
+                    "https://sqs.us-west-2.amazonaws.com/111111111111/hryeung-ia-podaac-forge-background-job-queue": 200,
+                    "https://sqs.us-west-2.amazonaws.com/111111111111/hryeung-ia-podaac-tig-background-job-queue": 200
                 },
-                "state_machine": "arn:aws:states:us-west-2:***REMOVED***:stateMachine:hryeung-ia-podaac-DiscoverWorkflow",
+                "state_machine": "arn:aws:states:us-west-2:111111111111:stateMachine:hryeung-ia-podaac-DiscoverWorkflow",
                 "system_bucket": "dummy_bucket",
-                "queueUrl": "arn:aws:sqs:us-west-2:***REMOVED***:hryeung-ia-podaac-startSF"
+                "queueUrl": "arn:aws:sqs:us-west-2:111111111111:hryeung-ia-podaac-startSF"
             },
             "replace": {
                 "Bucket": "dummy_bucket",
@@ -70,15 +72,15 @@ s3_file_content = {
         "cumulus_version": "9.9.0",
         "message_source": "sfn",
         "queueExecutionLimits": {
-            "https://sqs.us-west-2.amazonaws.com/***REMOVED***/hryeung-ia-podaac-background-job-queue": 200,
-            "https://sqs.us-west-2.amazonaws.com/***REMOVED***/hryeung-ia-podaac-backgroundProcessing": 5,
-            "https://sqs.us-west-2.amazonaws.com/***REMOVED***/hryeung-ia-podaac-big-background-job-queue": 20,
-            "https://sqs.us-west-2.amazonaws.com/***REMOVED***/hryeung-ia-podaac-forge-background-job-queue": 200,
-            "https://sqs.us-west-2.amazonaws.com/***REMOVED***/hryeung-ia-podaac-tig-background-job-queue": 200
+            "https://sqs.us-west-2.amazonaws.com/111111111111/hryeung-ia-podaac-background-job-queue": 200,
+            "https://sqs.us-west-2.amazonaws.com/111111111111/hryeung-ia-podaac-backgroundProcessing": 5,
+            "https://sqs.us-west-2.amazonaws.com/111111111111/hryeung-ia-podaac-big-background-job-queue": 20,
+            "https://sqs.us-west-2.amazonaws.com/111111111111/hryeung-ia-podaac-forge-background-job-queue": 200,
+            "https://sqs.us-west-2.amazonaws.com/111111111111/hryeung-ia-podaac-tig-background-job-queue": 200
         },
-        "state_machine": "arn:aws:states:us-west-2:***REMOVED***:stateMachine:hryeung-ia-podaac-DiscoverWorkflow",
+        "state_machine": "arn:aws:states:us-west-2:111111111111:stateMachine:hryeung-ia-podaac-DiscoverWorkflow",
         "system_bucket": "dummy_bucket",
-        "queueUrl": "arn:aws:sqs:us-west-2:***REMOVED***:hryeung-ia-podaac-startSF"
+        "queueUrl": "arn:aws:sqs:us-west-2:111111111111:hryeung-ia-podaac-startSF"
     },
     "exception": "None",
     "meta": {
@@ -142,7 +144,7 @@ s3_file_content = {
                 "glacier-bucket": "hryeung-ia-podaac-glacier",
                 "granuleRecoveryWorkflow": "DrRecoveryWorkflow",
                 "response-endpoint": [
-                    "arn:aws:sns:us-west-2:***REMOVED***:hryeung-ia-podaac-provider-response-sns"
+                    "arn:aws:sns:us-west-2:111111111111:hryeung-ia-podaac-provider-response-sns"
                 ],
                 "workflowChoice": {
                     "compressed": False,
@@ -170,7 +172,7 @@ s3_file_content = {
             "0": {
                 "name": "hryeung-ia-podaac-DiscoverGranules",
                 "version": "$LATEST",
-                "arn": "arn:aws:lambda:us-west-2:***REMOVED***:function:hryeung-ia-podaac-DiscoverGranules"
+                "arn": "arn:aws:lambda:us-west-2:111111111111:function:hryeung-ia-podaac-DiscoverGranules"
             }
         }
     },
