@@ -11,52 +11,32 @@ from moto import mock_s3
 
 lambda_input = {
     "cma": {
-        "event.$": "$",
         "event": {
             "cumulus_meta": {
                 "cumulus_version": "9.9.0",
                 "message_source": "sfn",
-                "queueExecutionLimits": {
-                    "https://sqs.us-west-2.amazonaws.com/111111111111/hryeung-ia-podaac-background-job-queue": 200,
-                    "https://sqs.us-west-2.amazonaws.com/111111111111/hryeung-ia-podaac-backgroundProcessing": 5,
-                    "https://sqs.us-west-2.amazonaws.com/111111111111/hryeung-ia-podaac-big-background-job-queue": 20,
-                    "https://sqs.us-west-2.amazonaws.com/111111111111/hryeung-ia-podaac-forge-background-job-queue": 200,
-                    "https://sqs.us-west-2.amazonaws.com/111111111111/hryeung-ia-podaac-tig-background-job-queue": 200
-                },
-                "state_machine": "arn:aws:states:us-west-2:111111111111:stateMachine:hryeung-ia-podaac-DiscoverWorkflow",
-                "system_bucket": "dummy_bucket",
-                "queueUrl": "arn:aws:sqs:us-west-2:111111111111:hryeung-ia-podaac-startSF"
+                "system_bucket": "dummy_bucket"
             },
             "replace": {
                 "Bucket": "dummy_bucket",
                 "Key": "events/dummy_aws_s3_object.json",
                 "TargetPath": "$"
-            },
-            "task_config": {
-                "provider": "{$.meta.provider}",
-                "provider_path": "{$.meta.provider_path}"
             }
+        },
+        "task_config": {
+            "provider": "{$.meta.provider}",
+            "provider_path": "{$.meta.provider_path}"
         }
     }
 }
 
 bad_lambda_input = {
     "cma": {
-        "event.$": "$",
         "event": {
             "cumulus_meta": {
                 "cumulus_version": "9.9.0",
                 "message_source": "sfn",
-                "queueExecutionLimits": {
-                    "https://sqs.us-west-2.amazonaws.com/111111111111/hryeung-ia-podaac-background-job-queue": 200,
-                    "https://sqs.us-west-2.amazonaws.com/111111111111/hryeung-ia-podaac-backgroundProcessing": 5,
-                    "https://sqs.us-west-2.amazonaws.com/111111111111/hryeung-ia-podaac-big-background-job-queue": 20,
-                    "https://sqs.us-west-2.amazonaws.com/111111111111/hryeung-ia-podaac-forge-background-job-queue": 200,
-                    "https://sqs.us-west-2.amazonaws.com/111111111111/hryeung-ia-podaac-tig-background-job-queue": 200
-                },
-                "state_machine": "arn:aws:states:us-west-2:111111111111:stateMachine:hryeung-ia-podaac-DiscoverWorkflow",
-                "system_bucket": "dummy_bucket",
-                "queueUrl": "arn:aws:sqs:us-west-2:111111111111:hryeung-ia-podaac-startSF"
+                "system_bucket": "dummy_bucket"
             },
             "replace": {
                 "Bucket": "dummy_bucket",
@@ -71,94 +51,10 @@ s3_file_content = {
     "cumulus_meta": {
         "cumulus_version": "9.9.0",
         "message_source": "sfn",
-        "queueExecutionLimits": {
-            "https://sqs.us-west-2.amazonaws.com/111111111111/hryeung-ia-podaac-background-job-queue": 200,
-            "https://sqs.us-west-2.amazonaws.com/111111111111/hryeung-ia-podaac-backgroundProcessing": 5,
-            "https://sqs.us-west-2.amazonaws.com/111111111111/hryeung-ia-podaac-big-background-job-queue": 20,
-            "https://sqs.us-west-2.amazonaws.com/111111111111/hryeung-ia-podaac-forge-background-job-queue": 200,
-            "https://sqs.us-west-2.amazonaws.com/111111111111/hryeung-ia-podaac-tig-background-job-queue": 200
-        },
-        "state_machine": "arn:aws:states:us-west-2:111111111111:stateMachine:hryeung-ia-podaac-DiscoverWorkflow",
-        "system_bucket": "dummy_bucket",
-        "queueUrl": "arn:aws:sqs:us-west-2:111111111111:hryeung-ia-podaac-startSF"
+        "system_bucket": "dummy_bucket"
     },
     "exception": "None",
     "meta": {
-        "buckets": {
-            "dashboard": {
-                "name": "hryeung-ia-podaac-dashboard",
-                "type": "public"
-            },
-            "internal": {
-                "name": "dummy_bucket",
-                "type": "internal"
-            },
-            "orca_default": {
-                "name": "hryeung-ia-podaac-archive",
-                "type": "orca"
-            },
-            "private": {
-                "name": "hryeung-ia-podaac-private",
-                "type": "private"
-            },
-            "protected": {
-                "name": "hryeung-ia-podaac-protected",
-                "type": "protected"
-            },
-            "public": {
-                "name": "hryeung-ia-podaac-public",
-                "type": "public"
-            }
-        },
-        "collection": {
-            "duplicateHandling": "replace",
-            "files": [
-                {
-                    "bucket": "protected",
-                    "regex": "^[0-9]{14}-NAVO-L2P_GHRSST-SST1m-VIIRS_NPP-v02\\.0-fv03\\.0\\.nc$",
-                    "sampleFileName": "20210101000119-NAVO-L2P_GHRSST-SST1m-VIIRS_NPP-v02.0-fv03.0.nc",
-                    "type": "data"
-                },
-                {
-                    "bucket": "public",
-                    "regex": "^[0-9]{14}-NAVO-L2P_GHRSST-SST1m-VIIRS_NPP-v02\\.0-fv03\\.0\\.nc\\.md5$",
-                    "sampleFileName": "20210101000119-NAVO-L2P_GHRSST-SST1m-VIIRS_NPP-v02.0-fv03.0.nc.md5",
-                    "type": "metadata"
-                },
-                {
-                    "bucket": "private",
-                    "regex": "^[0-9]{14}-NAVO-L2P_GHRSST-SST1m-VIIRS_NPP-v02\\.0-fv03\\.0\\.cmr\\.json$",
-                    "sampleFileName": "20210101000119-NAVO-L2P_GHRSST-SST1m-VIIRS_NPP-v02.0-fv03.0.cmr.json",
-                    "type": "metadata"
-                },
-                {
-                    "bucket": "protected",
-                    "regex": "^[0-9]{14}-NAVO-L2P_GHRSST-SST1m-VIIRS_NPP-v02\\.0-fv03\\.0\\.nc\\.dmrpp$",
-                    "sampleFileName": "20210101000119-NAVO-L2P_GHRSST-SST1m-VIIRS_NPP-v02.0-fv03.0.nc.dmrpp",
-                    "type": "metadata"
-                }
-            ],
-            "granuleId": "^20220111135[0-9]{3}-NAVO-L2P_GHRSST-SST1m-VIIRS_NPP-v02\\.0-fv03\\.0$",
-            "granuleIdExtraction": "^(20220111135[0-9]{3}-NAVO-L2P_GHRSST-SST1m-VIIRS_NPP-v02\\.0-fv03\\.0)((\\.nc)|(\\.nc\\.md5)|(\\.cmr\\.json)|(\\.nc\\.dmrpp))?$",
-            "meta": {
-                "glacier-bucket": "hryeung-ia-podaac-glacier",
-                "granuleRecoveryWorkflow": "DrRecoveryWorkflow",
-                "response-endpoint": [
-                    "arn:aws:sns:us-west-2:111111111111:hryeung-ia-podaac-provider-response-sns"
-                ],
-                "workflowChoice": {
-                    "compressed": False,
-                    "convertNetCDF": False,
-                    "dmrpp": True,
-                    "glacier": True,
-                    "readDataFileForMetadata": True
-                }
-            },
-            "name": "VIIRS_NPP-NAVO-L2P-v3.0",
-            "sampleFileName": "20210101000119-NAVO-L2P_GHRSST-SST1m-VIIRS_NPP-v02.0-fv03.0.nc",
-            "url_path": "{cmrMetadata.CollectionReference.ShortName}",
-            "version": "3.0"
-        },
         "provider": {
             "globalConnectionLimit": 1,
             "host": "ops-metis.jpl.nasa.gov",
@@ -167,14 +63,7 @@ s3_file_content = {
             "protocol": "sftp",
             "username": "cumulus-test"
         },
-        "provider_path": "/cumulus-test/gds2/NAVO/",
-        "workflow_tasks": {
-            "0": {
-                "name": "hryeung-ia-podaac-DiscoverGranules",
-                "version": "$LATEST",
-                "arn": "arn:aws:lambda:us-west-2:111111111111:function:hryeung-ia-podaac-DiscoverGranules"
-            }
-        }
+        "provider_path": "/cumulus-test/gds2/NAVO/"
     },
     "payload": {
         "granules": [
@@ -382,6 +271,7 @@ sample_cnm = {
         "dataVersion": "3.0"
     }
 }
+
 
 def test_version():
     assert __version__ == '0.1.0'
