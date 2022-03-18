@@ -107,5 +107,38 @@ jobs:
                 tag: ${{ env.software_version }}
                 message: "Version ${{ env.software_version }}"
 
-      - name: Build Python Artifact
+      - name: Build Python Lambda Artifact
         run: sh ./build.sh
+
+      - name: Prepare Artifacts
+        run: |
+            artifact_file_name="${{ env.pyproject_name }}-${{ env.software_version }}.zip"
+            echo "ARTIFACT_FILE=$artifact_file_name" >> $GITHUB_ENV
+            cp artifact-${{ env.software_version }}.zip $artifact_file_name
+
+      - name: Create PreRelease
+        id: create_prerelease
+        if: ${{ !contains(github.ref, 'master') }}
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
+        with:
+          tag_name: "v${{ env.software_version }}"
+          release_name: "Release v${{ env.software_version }} - ${{ github.ref }}"
+          body: |
+            Changes in this release:
+            ${{ github.event.head_commit.message }}
+          draft: false
+          prerelease: true
+
+      - name: Upload PreRelease Asset
+        id: upload-prerelease-asset
+        if: ${{ !contains(github.ref, 'master') }}
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_prerelease.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps
+          asset_path: "${{ env.ARTIFACT_FILE }}"
+          asset_name: "${{ env.ARTIFACT_FILE }}"
+          asset_content_type: application/zip
