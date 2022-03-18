@@ -22,9 +22,7 @@ Auto build script
 ----
 TL;DR ::
 
-    chmod u+x build.sh;
-    ./build.sh;
-    chmod u-x build.sh;
+    sh ./build.sh;
 
 to run the following commands in order and build the artifact.zip
 
@@ -51,9 +49,9 @@ Then upload ``artifact.zip`` to any location you plan to use it
 * Upload directly as a lambda with ``aws lambda update-function-code``
 * Upload to your AWS S3 ``lambdas/`` folder so that your Cumulus Terraform Build can use it
 
-Testing
+Testing & Coverage
 ====
-Run the ``poetry run pytest tests -v`` command; you should see a similar output::
+Run the ``poetry run pytest --cov cumulus_granule_to_cnm tests -v`` command; you should see a similar output::
 
     platform darwin -- Python 3.8.9, pytest-7.1.0, pluggy-1.0.0 -- /Users/hryeung/Library/Caches/pypoetry/virtualenvs/cumulus-granule-to-cnm-iV9scENW-py3.8/bin/python
     cachedir: .pytest_cache
@@ -63,6 +61,14 @@ Run the ``poetry run pytest tests -v`` command; you should see a similar output:
     tests/test_cumulus_granule_to_cnm.py::test_version PASSED                                                 [ 33%]
     tests/test_cumulus_granule_to_cnm.py::test_granule_to_cnm_translation PASSED                              [ 66%]
     tests/test_cumulus_granule_to_cnm.py::test_granule_to_cnm_cumulus_process_catches_missing_config PASSED   [100%]
+
+    ---------- coverage: platform darwin, python 3.8.9-final-0 -----------
+    Name                                               Stmts   Miss  Cover
+    ----------------------------------------------------------------------
+    cumulus_granule_to_cnm/__init__.py                     1      0   100%
+    cumulus_granule_to_cnm/cumulus_granule_to_cnm.py      38      0   100%
+    ----------------------------------------------------------------------
+    TOTAL                                                 39      0   100%
 
         ====== 3 passed in 0.99s ======
 
