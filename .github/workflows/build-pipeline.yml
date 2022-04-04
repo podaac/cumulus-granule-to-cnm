@@ -90,8 +90,9 @@ jobs:
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
-          command: monitor -d
+          command: monitor
           args: >
+            -d
             --org=${{ secrets.SNYK_ORG_ID }}
             --project-name=${{ github.repository }}
 
