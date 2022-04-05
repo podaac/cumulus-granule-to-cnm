@@ -85,6 +85,11 @@ jobs:
       - name: Test and coverage
         run: poetry run pytest --cov cumulus_granule_to_cnm tests -v
 
+      - name: pyLint & flake8
+        run: |
+          poetry run pylint ${{ env.pyproject_name }}
+          poetry run flake8 ${{ env.pyproject_name }}
+
       - name: Run Snyk on Python
         uses: snyk/actions/python-3.8@master
         env:
