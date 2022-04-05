@@ -87,8 +87,8 @@ jobs:
 
       - name: pyLint & flake8
         run: |
-          poetry run pylint ${{ env.pyproject_name }}/
-          poetry run flake8 ${{ env.pyproject_name }}/
+          poetry run pylint cumulus-granule-to-cnm
+          poetry run flake8 cumulus-granule-to-cnm
 
       - name: Run Snyk on Python
         uses: snyk/actions/python-3.8@master
