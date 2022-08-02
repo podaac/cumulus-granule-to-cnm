@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Deprecated
 ### Removed
 ### Fixed
+- Issue with `actions-ecosystem/action-push-tag@v1` during github action build; reverting to manual process: https://github.com/actions-ecosystem/action-push-tag/issues/10
 ### Security
 
 ## [v0.1.0] - 2022-03-17
