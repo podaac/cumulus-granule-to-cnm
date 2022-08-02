@@ -114,14 +114,15 @@ jobs:
                 git push
 
       - name: Push Tag
-        uses: actions-ecosystem/action-push-tag@v1
         if: |
                 github.ref == 'refs/heads/develop' ||
                 github.ref == 'refs/heads/main'    ||
                 startsWith(github.ref, 'refs/heads/release')
-        with:
-                tag: ${{ env.software_version }}
-                message: "Version ${{ env.software_version }}"
+        run: |
+                tag=${{ steps.version.outputs.tag_name }}
+                message='${{ steps.version.outputs.tag_name }}'
+                git tag -a "${tag}" -m "${message}"
+                git push origin "${tag}"
 
       - name: Build Python Lambda Artifact
         run: sh ./build.sh
