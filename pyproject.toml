@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "cumulus-granule-to-cnm"
-version = "0.2.1-alpha.0"
+version = "0.2.1-alpha.1"
 description = "Basic conversion from granule to cnm"
 authors = ["Hong-Kit Randy Yeung <hong-kit.r.yeung@jpl.nasa.gov>"]
 
