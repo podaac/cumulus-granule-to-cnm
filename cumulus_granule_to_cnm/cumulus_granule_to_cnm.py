@@ -38,7 +38,7 @@ class GranuleToCNM(Process):
         for i in self.input['granules']:
             granule = i
 
-            cnm_provider = 'PODAAC'
+            cnm_provider = meta_provider['id']
             cnm_dataset = granule['dataType']
             cnm_data_version = granule['version']
             cnm_files = []
