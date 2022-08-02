@@ -119,8 +119,8 @@ jobs:
                 github.ref == 'refs/heads/main'    ||
                 startsWith(github.ref, 'refs/heads/release')
         run: |
-                tag=${{ steps.version.outputs.tag_name }}
-                message='${{ steps.version.outputs.tag_name }}'
+                tag=${{ env.software_version }}
+                message="Version ${{ env.software_version }}"
                 git tag -a "${tag}" -m "${message}"
                 git push origin "${tag}"
 
