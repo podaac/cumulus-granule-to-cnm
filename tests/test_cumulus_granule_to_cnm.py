@@ -24,8 +24,10 @@ lambda_input = {
             }
         },
         "task_config": {
+            "collection": "{$.meta.collection}",
             "provider": "{$.meta.provider}",
-            "provider_path": "{$.meta.provider_path}"
+            "provider_path": "{$.meta.provider_path}",
+            "cumulus_meta": "{$.cumulus_meta}"
         }
     }
 }
@@ -55,6 +57,9 @@ s3_file_content = {
     },
     "exception": "None",
     "meta": {
+        "collection": {
+            "name": "VIIRS_NPP-NAVO-L2P-v3.0"
+        },
         "provider": {
             "globalConnectionLimit": 1,
             "host": "ops-metis.jpl.nasa.gov",
