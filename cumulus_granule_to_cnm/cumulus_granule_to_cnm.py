@@ -35,6 +35,7 @@ class GranuleToCNM(Process):
         # print(f.read())
 
         s3 = boto3.resource('s3')
+        self.logger.debug('generating report: {}/{}', bucket, 'temp/'+filename)
         s3.meta.client.upload_file('/tmp/'+filename, bucket, 'temp/'+filename)
         # response = s3.Bucket(bucket).upload_file('/tmp/'+filename, '/temp/'+filename)
         # self.logger.debug('upload response: {}', response)
