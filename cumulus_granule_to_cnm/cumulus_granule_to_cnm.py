@@ -1,6 +1,6 @@
-import boto3
 import os
 from datetime import datetime
+import boto3
 from cloudnotificationmessage import CloudNotificationMessage
 from cumulus_logger import CumulusLogger
 from cumulus_process import Process
@@ -25,22 +25,21 @@ class GranuleToCNM(Process):
     # file name: YYYYMMDDHHMMSS-CollectionName-Report.txt
     def generate_report(self, bucket, collection_name, files):
         filename = datetime.now().strftime('%Y%m%d%H%M%S') + "-" + collection_name + "-Report.txt"
-        f = open('/tmp/'+filename, 'a')
+        file = open('/tmp/' + filename, 'a')
         for i in files:
-            f.write(i + '\n')
-        f.write('-- end of file --')
-        f.close()
+            file.write(i + '\n')
+        file.write('-- end of file --')
+        file.close()
 
         # f = open(filename, "r")
         # print(f.read())
 
         s3 = boto3.resource('s3')
-        self.logger.debug('generating report: {}/{}', bucket, 'temp/'+filename)
-        s3.meta.client.upload_file('/tmp/'+filename, bucket, 'temp/'+filename)
+        self.logger.debug('generating report: {}/{}', bucket, 'temp/' + filename)
+        s3.meta.client.upload_file('/tmp/' + filename, bucket, 'temp/' + filename)
         # response = s3.Bucket(bucket).upload_file('/tmp/'+filename, '/temp/'+filename)
         # self.logger.debug('upload response: {}', response)
-        os.remove('/tmp/'+filename)
-
+        os.remove('/tmp/' + filename)
 
     def process(self):
         # Config Content
@@ -59,7 +58,7 @@ class GranuleToCNM(Process):
 
         # if has granules, read first item and find collection
         if 'granules' not in self.input.keys():
-            raise Exception(f'"granules" is missing from self.input')
+            raise Exception('"granules" is missing from self.input')
 
         self.logger.debug('collection: {} | granules found: {}',
                           meta_collection.get('name'),
@@ -101,7 +100,9 @@ class GranuleToCNM(Process):
             "cnm_list": cnm_list
         }
 
-        self.generate_report(meta_cumulus.get('system_bucket'), meta_collection.get('name'), file_list)
+        self.generate_report(meta_cumulus.get('system_bucket'),
+                             meta_collection.get('name'),
+                             file_list)
 
         return return_data
 
