@@ -1,7 +1,9 @@
+import os
+from datetime import datetime
+import boto3
 from cloudnotificationmessage import CloudNotificationMessage
 from cumulus_logger import CumulusLogger
 from cumulus_process import Process
-
 
 logger = CumulusLogger('granule_to_cnm_logger')
 
@@ -18,25 +20,54 @@ class GranuleToCNM(Process):
 
         for requirement in required:
             if requirement not in self.config.keys():
-                raise Exception(f'{requirement} config key is missing')
+                raise Exception(f'"{requirement}" config key is missing')
+
+    # file name: YYYYMMDDHHMMSS-CollectionName-Report.txt
+    def generate_report(self, bucket, collection_name, files):
+        filename = datetime.now().strftime('%Y%m%d%H%M%S') + "-" + collection_name + "-Report.txt"
+        file = open('/tmp/' + filename, 'a')
+        for i in files:
+            file.write(i + '\n')
+        file.write('-- end of file --')
+        file.close()
+
+        # f = open(filename, "r")
+        # print(f.read())
+
+        s3 = boto3.resource('s3')
+        self.logger.debug('generating report: {}/{}', bucket, 'temp/' + filename)
+        s3.meta.client.upload_file('/tmp/' + filename, bucket, 'temp/' + filename)
+        # response = s3.Bucket(bucket).upload_file('/tmp/'+filename, '/temp/'+filename)
+        # self.logger.debug('upload response: {}', response)
+        os.remove('/tmp/' + filename)
 
     def process(self):
         # Config Content
         meta_provider = self.config.get('provider', [])
-        meta_provider_path = self.config.get('provider_path', [])
+        meta_collection = self.config.get('collection')
+        meta_provider_path = meta_collection['meta']['provider_path']
+        meta_cumulus = self.config.get('cumulus_meta')
 
         self.logger.debug('provider: {}', meta_provider)
         self.logger.debug('provider_path: {}', meta_provider_path)
 
         # Building the URI from info provided by provider since the granule itself might not have it
-        uri = f'{meta_provider["protocol"]}://{meta_provider["host"]}{meta_provider_path}'
+        uri = f'{meta_provider["protocol"]}://{meta_provider["host"]}/'
 
         cnm_list = []
 
-        self.logger.debug('total number of granules found: {}', len(self.input['granules']))
+        # if has granules, read first item and find collection
+        if 'granules' not in self.input.keys():
+            raise Exception('"granules" is missing from self.input')
 
-        for i in self.input['granules']:
-            granule = i
+        self.logger.debug('collection: {} | granules found: {}',
+                          meta_collection.get('name'),
+                          len(self.input['granules']))
+
+        file_list = []
+
+        for granule in self.input['granules']:
+            self.logger.debug('granuleId: {}', granule['granuleId'])
 
             cnm_provider = meta_provider['id']
             cnm_dataset = granule['dataType']
@@ -45,20 +76,35 @@ class GranuleToCNM(Process):
             for file in granule['files']:
                 cnm_granule_file = {
                     'type': file.get('type', '') or '',
-                    'uri': uri + file.get('name', '') or '',
+                    'uri': uri + (file.get('path', '')).lstrip('/') + '/' + file.get('name', '') or '',
                     'size': file.get('size', '') or ''
                 }
                 cnm_files.append(cnm_granule_file)
+                file_list.append(uri + file.get('name', '') or '')
 
             # Create CNM object
             cnm = CloudNotificationMessage(
                 cnm_dataset, cnm_files, cnm_data_version, cnm_provider
             )
+
+            # Extra metadata marking CNM is from discover granule
+            cnm.message['meta'] = dict(
+                source=meta_cumulus.get('state_machine'),
+                author='hryeung',
+                contact='hong-kit.r.yeung@jpl.nasa.gov',
+                execution_name=meta_cumulus.get('execution_name')
+            )
+
             cnm_list.append(cnm.message)
 
         return_data = {
             "cnm_list": cnm_list
         }
+
+        self.generate_report(meta_cumulus.get('system_bucket'),
+                             meta_collection.get('name'),
+                             file_list)
+
         return return_data
 
 
