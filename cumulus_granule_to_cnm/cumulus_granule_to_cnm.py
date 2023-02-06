@@ -44,15 +44,15 @@ class GranuleToCNM(Process):
     def process(self):
         # Config Content
         meta_provider = self.config.get('provider', [])
-        meta_provider_path = self.config.get('provider_path', [])
         meta_collection = self.config.get('collection')
+        meta_provider_path = meta_collection['meta']['provider_path']
         meta_cumulus = self.config.get('cumulus_meta')
 
         self.logger.debug('provider: {}', meta_provider)
         self.logger.debug('provider_path: {}', meta_provider_path)
 
         # Building the URI from info provided by provider since the granule itself might not have it
-        uri = f'{meta_provider["protocol"]}://{meta_provider["host"]}{meta_provider_path}'
+        uri = f'{meta_provider["protocol"]}://{meta_provider["host"]}/'
 
         cnm_list = []
 
@@ -76,7 +76,7 @@ class GranuleToCNM(Process):
             for file in granule['files']:
                 cnm_granule_file = {
                     'type': file.get('type', '') or '',
-                    'uri': uri + file.get('name', '') or '',
+                    'uri': uri + (file.get('path', '')).lstrip('/') + '/' + file.get('name', '') or '',
                     'size': file.get('size', '') or ''
                 }
                 cnm_files.append(cnm_granule_file)
