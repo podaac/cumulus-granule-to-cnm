@@ -22,34 +22,13 @@ class GranuleToCNM(Process):
             if requirement not in self.config.keys():
                 raise Exception(f'"{requirement}" config key is missing')
 
-    # file name: YYYYMMDDHHMMSS-CollectionName-Report.txt
-    def generate_report(self, bucket, collection_name, files):
-        filename = datetime.now().strftime('%Y%m%d%H%M%S') + "-" + collection_name + "-Report.txt"
-        file = open('/tmp/' + filename, 'a')
-        for i in files:
-            file.write(i + '\n')
-        file.write('-- end of file --')
-        file.close()
-
-        # f = open(filename, "r")
-        # print(f.read())
-
-        s3 = boto3.resource('s3')
-        self.logger.debug('generating report: {}/{}', bucket, 'temp/' + filename)
-        s3.meta.client.upload_file('/tmp/' + filename, bucket, 'temp/' + filename)
-        # response = s3.Bucket(bucket).upload_file('/tmp/'+filename, '/temp/'+filename)
-        # self.logger.debug('upload response: {}', response)
-        os.remove('/tmp/' + filename)
-
     def process(self):
         # Config Content
         meta_provider = self.config.get('provider', [])
         meta_collection = self.config.get('collection')
-        meta_provider_path = meta_collection['meta']['provider_path']
         meta_cumulus = self.config.get('cumulus_meta')
 
         self.logger.debug('provider: {}', meta_provider)
-        self.logger.debug('provider_path: {}', meta_provider_path)
 
         # Building the URI from info provided by provider since the granule itself might not have it
         uri = f'{meta_provider["protocol"]}://{meta_provider["host"]}/'
@@ -63,8 +42,6 @@ class GranuleToCNM(Process):
         self.logger.debug('collection: {} | granules found: {}',
                           meta_collection.get('name'),
                           len(self.input['granules']))
-
-        file_list = []
 
         for granule in self.input['granules']:
             self.logger.debug('granuleId: {}', granule['granuleId'])
@@ -80,7 +57,6 @@ class GranuleToCNM(Process):
                     'size': file.get('size', '') or ''
                 }
                 cnm_files.append(cnm_granule_file)
-                file_list.append(uri + file.get('name', '') or '')
 
             # Create CNM object
             cnm = CloudNotificationMessage(
@@ -100,10 +76,6 @@ class GranuleToCNM(Process):
         return_data = {
             "cnm_list": cnm_list
         }
-
-        self.generate_report(meta_cumulus.get('system_bucket'),
-                             meta_collection.get('name'),
-                             file_list)
 
         return return_data
 
