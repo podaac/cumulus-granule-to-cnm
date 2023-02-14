@@ -1,6 +1,3 @@
-import os
-from datetime import datetime
-import boto3
 from cloudnotificationmessage import CloudNotificationMessage
 from cumulus_logger import CumulusLogger
 from cumulus_process import Process
@@ -64,12 +61,12 @@ class GranuleToCNM(Process):
             )
 
             # Extra metadata marking CNM is from discover granule
-            cnm.message['meta'] = dict(
-                source=meta_cumulus.get('state_machine'),
-                author='hryeung',
-                contact='hong-kit.r.yeung@jpl.nasa.gov',
-                execution_name=meta_cumulus.get('execution_name')
-            )
+            cnm.message['meta'] = {
+                "source": meta_cumulus.get('state_machine'),
+                "author": 'hryeung',
+                "contact": 'hong-kit.r.yeung@jpl.nasa.gov',
+                "execution_name": meta_cumulus.get('execution_name')
+            }
 
             cnm_list.append(cnm.message)
 
