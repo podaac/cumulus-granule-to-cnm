@@ -465,6 +465,61 @@ s3_file_content_2 = {
       }
     }
 
+s3_file_content_zero_file_size = {
+    "cumulus_meta": {
+        "cumulus_version": "9.9.0",
+        "message_source": "sfn",
+        "system_bucket": "dummy_bucket"
+    },
+    "exception": "None",
+    "meta": {
+        "collection": {
+            "name": "VIIRS_NPP-NAVO-L2P-v3.0",
+            "meta": {
+                "provider_path": "/cumulus-test/gds2/NAVO/"
+            }
+        },
+        "provider": {
+            "globalConnectionLimit": 1,
+            "host": "ops-metis.jpl.nasa.gov",
+            "id": "podaac-test-sftp",
+            "password": "password",
+            "protocol": "sftp",
+            "username": "cumulus-test"
+        },
+        "provider_path": "/cumulus-test/gds2/NAVO/"
+    },
+    "payload": {
+        "granules": [
+            {
+                "granuleId": "20220111135009-NAVO-L2P_GHRSST-SST1m-VIIRS_NPP-v02.0-fv03.0",
+                "dataType": "VIIRS_NPP-NAVO-L2P-v3.0",
+                "version": "3.0",
+                "files": [
+                    {
+                        "name": "20220111135009-NAVO-L2P_GHRSST-SST1m-VIIRS_NPP-v02.0-fv03.0.nc",
+                        "path": "/cumulus-test/gds2/NAVO",
+                        "size": 0,
+                        "time": 1641930305000,
+                        "bucket": "hryeung-ia-podaac-protected",
+                        "url_path": "{cmrMetadata.CollectionReference.ShortName}",
+                        "type": "data"
+                    },
+                    {
+                        "name": "20220111135009-NAVO-L2P_GHRSST-SST1m-VIIRS_NPP-v02.0-fv03.0.nc.md5",
+                        "path": "/cumulus-test/gds2/NAVO",
+                        "size": 0,
+                        "time": 1641930305000,
+                        "bucket": "hryeung-ia-podaac-public",
+                        "url_path": "{cmrMetadata.CollectionReference.ShortName}",
+                        "type": "metadata"
+                    }
+                ]
+            }
+        ]
+    }
+}
+
 sample_cnm = {
     "version": "1.5.1",
     "provider": "PODAAC",
@@ -546,6 +601,29 @@ def test_granule_to_cnm_translation():
 
     assert len(response['payload']['cnm_list']) is 7
     assert response['payload']['cnm_list'][0]['product'] == sample_cnm['product']
+
+
+@mock_s3
+def test_granule_to_cnm_translation_zero_size():
+
+    # Fake aws s3 bucket
+    s3_client = boto3.client('s3', region_name='us-east-1')  # s3 doesn't like us-west-2...
+    test_bucket_name = 'dummy_bucket'
+    test_bucket_key = 'events/dummy_aws_s3_object.json'
+    s3_client.create_bucket(Bucket=test_bucket_name)
+    s3_client.put_object(Body=json.dumps(s3_file_content_zero_file_size), Bucket=test_bucket_name, Key=test_bucket_key)
+
+    response = {}
+    try:
+        response = lambda_handler(lambda_input, {})
+    except Exception as e:
+        print(e)
+
+    size = response['payload']['cnm_list'][0]['product']['files'][0]['size']
+    assert len(response['payload']['cnm_list']) is 1
+    assert size is 0
+    assert isinstance(size, int)
+    # assert response['payload']['cnm_list'][0]['product'] == sample_cnm['product']
 
 
 @mock_s3

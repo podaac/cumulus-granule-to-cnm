@@ -51,7 +51,7 @@ class GranuleToCNM(Process):
                 cnm_granule_file = {
                     'type': file.get('type', '') or '',
                     'uri': uri + (file.get('path', '')).lstrip('/') + '/' + file.get('name', '') or '',
-                    'size': file.get('size', '') or ''
+                    'size': file.get('size', 0) or 0
                 }
                 cnm_files.append(cnm_granule_file)
 
