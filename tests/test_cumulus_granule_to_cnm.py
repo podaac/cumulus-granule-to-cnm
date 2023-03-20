@@ -283,17 +283,17 @@ s3_file_content_2 = {
         "execution_name": "514d1636-e0be-129f-0005-2900e7b7b692",
         "message_source": "sfn",
         "queueExecutionLimits": {
-          "https://sqs.us-west-2.amazonaws.com/***REMOVED***/hryeung-ia-podaac-background-job-queue": 200,
-          "https://sqs.us-west-2.amazonaws.com/***REMOVED***/hryeung-ia-podaac-backgroundProcessing": 5,
-          "https://sqs.us-west-2.amazonaws.com/***REMOVED***/hryeung-ia-podaac-big-background-job-queue": 20,
-          "https://sqs.us-west-2.amazonaws.com/***REMOVED***/hryeung-ia-podaac-dmrpp-background-job-queue": 50,
-          "https://sqs.us-west-2.amazonaws.com/***REMOVED***/hryeung-ia-podaac-forge-background-job-queue": 200,
-          "https://sqs.us-west-2.amazonaws.com/***REMOVED***/hryeung-ia-podaac-tig-background-job-queue": 200
+          "https://sqs.us-west-2.amazonaws.com/065089468788/hryeung-ia-podaac-background-job-queue": 200,
+          "https://sqs.us-west-2.amazonaws.com/065089468788/hryeung-ia-podaac-backgroundProcessing": 5,
+          "https://sqs.us-west-2.amazonaws.com/065089468788/hryeung-ia-podaac-big-background-job-queue": 20,
+          "https://sqs.us-west-2.amazonaws.com/065089468788/hryeung-ia-podaac-dmrpp-background-job-queue": 50,
+          "https://sqs.us-west-2.amazonaws.com/065089468788/hryeung-ia-podaac-forge-background-job-queue": 200,
+          "https://sqs.us-west-2.amazonaws.com/065089468788/hryeung-ia-podaac-tig-background-job-queue": 200
         },
-        "state_machine": "arn:aws:states:us-west-2:***REMOVED***:stateMachine:hryeung-ia-podaac-DiscoverConvertPublishWorkflow",
+        "state_machine": "arn:aws:states:us-west-2:065089468788:stateMachine:hryeung-ia-podaac-DiscoverConvertPublishWorkflow",
         "system_bucket": "dummy_bucket",
         "workflow_start_time": 1675357242556,
-        "queueUrl": "arn:aws:sqs:us-west-2:***REMOVED***:hryeung-ia-podaac-startSF"
+        "queueUrl": "arn:aws:sqs:us-west-2:065089468788:hryeung-ia-podaac-startSF"
       },
       "exception": "None",
       "meta": {
@@ -387,7 +387,7 @@ s3_file_content_2 = {
             "granuleRecoveryWorkflow": "OrcaRecoveryWorkflow",
             "rangeIs360": "true",
             "response-endpoint": [
-              "arn:aws:sns:us-west-2:***REMOVED***:hryeung-ia-podaac-provider-response-sns"
+              "arn:aws:sns:us-west-2:065089468788:hryeung-ia-podaac-provider-response-sns"
             ],
             "workflowChoice": {
               "compressed": "false",
@@ -426,13 +426,13 @@ s3_file_content_2 = {
           "0": {
             "name": "hryeung-ia-podaac-discover-granules-tf-module",
             "version": "$LATEST",
-            "arn": "arn:aws:lambda:us-west-2:***REMOVED***:function:hryeung-ia-podaac-discover-granules-tf-module"
+            "arn": "arn:aws:lambda:us-west-2:065089468788:function:hryeung-ia-podaac-discover-granules-tf-module"
           }
         },
         "retries": 0,
         "visibilityTimeout": 1800,
-        "ingest_workflow_sns": "arn:aws:sns:us-west-2:***REMOVED***:hryeung-ia-podaac-provider-input-sns",
-        "queueUrl": "https://sqs.us-west-2.amazonaws.com/***REMOVED***/hryeung-ia-podaac-provider-input-queue"
+        "ingest_workflow_sns": "arn:aws:sns:us-west-2:065089468788:hryeung-ia-podaac-provider-input-sns",
+        "queueUrl": "https://sqs.us-west-2.amazonaws.com/065089468788/hryeung-ia-podaac-provider-input-queue"
       },
       "payload": {
         "granules": [
@@ -571,7 +571,7 @@ sample_cnm_calval = {
                     "dataVersion": "1"
                 },
                 "meta": {
-                    "source": "arn:aws:states:us-west-2:***REMOVED***:stateMachine:hryeung-ia-podaac-DiscoverConvertPublishWorkflow",
+                    "source": "arn:aws:states:us-west-2:065089468788:stateMachine:hryeung-ia-podaac-DiscoverConvertPublishWorkflow",
                     "author": "hryeung",
                     "contact": "hong-kit.r.yeung@jpl.nasa.gov",
                     "execution_name": "514d1636-e0be-129f-0005-2900e7b7b692"
