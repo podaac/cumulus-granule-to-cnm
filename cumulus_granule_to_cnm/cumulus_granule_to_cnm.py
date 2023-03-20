@@ -63,8 +63,6 @@ class GranuleToCNM(Process):
             # Extra metadata marking CNM is from discover granule
             cnm.message['meta'] = {
                 "source": meta_cumulus.get('state_machine'),
-                "author": 'hryeung',
-                "contact": 'hong-kit.r.yeung@jpl.nasa.gov',
                 "execution_name": meta_cumulus.get('execution_name')
             }
 
