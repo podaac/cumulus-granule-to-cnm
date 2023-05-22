@@ -57,7 +57,7 @@ class GranuleToCNM(Process):
 
             # Create CNM object
             cnm = CloudNotificationMessage(
-                cnm_dataset, cnm_files, cnm_data_version, cnm_provider
+                cnm_dataset, cnm_files, cnm_data_version, cnm_provider, granule_name=granule['granuleId']
             )
 
             # Extra metadata marking CNM is from discover granule
