@@ -283,17 +283,17 @@ s3_file_content_2 = {
         "execution_name": "514d1636-e0be-129f-0005-2900e7b7b692",
         "message_source": "sfn",
         "queueExecutionLimits": {
-          "https://sqs.us-west-2.amazonaws.com/065089468788/hryeung-ia-podaac-background-job-queue": 200,
-          "https://sqs.us-west-2.amazonaws.com/065089468788/hryeung-ia-podaac-backgroundProcessing": 5,
-          "https://sqs.us-west-2.amazonaws.com/065089468788/hryeung-ia-podaac-big-background-job-queue": 20,
-          "https://sqs.us-west-2.amazonaws.com/065089468788/hryeung-ia-podaac-dmrpp-background-job-queue": 50,
-          "https://sqs.us-west-2.amazonaws.com/065089468788/hryeung-ia-podaac-forge-background-job-queue": 200,
-          "https://sqs.us-west-2.amazonaws.com/065089468788/hryeung-ia-podaac-tig-background-job-queue": 200
+          "https://sqs.us-west-2.amazonaws.com/000000000000/hryeung-ia-podaac-background-job-queue": 200,
+          "https://sqs.us-west-2.amazonaws.com/000000000000/hryeung-ia-podaac-backgroundProcessing": 5,
+          "https://sqs.us-west-2.amazonaws.com/000000000000/hryeung-ia-podaac-big-background-job-queue": 20,
+          "https://sqs.us-west-2.amazonaws.com/000000000000/hryeung-ia-podaac-dmrpp-background-job-queue": 50,
+          "https://sqs.us-west-2.amazonaws.com/000000000000/hryeung-ia-podaac-forge-background-job-queue": 200,
+          "https://sqs.us-west-2.amazonaws.com/000000000000/hryeung-ia-podaac-tig-background-job-queue": 200
         },
-        "state_machine": "arn:aws:states:us-west-2:065089468788:stateMachine:hryeung-ia-podaac-DiscoverConvertPublishWorkflow",
+        "state_machine": "arn:aws:states:us-west-2:000000000000:stateMachine:hryeung-ia-podaac-DiscoverConvertPublishWorkflow",
         "system_bucket": "dummy_bucket",
         "workflow_start_time": 1675357242556,
-        "queueUrl": "arn:aws:sqs:us-west-2:065089468788:hryeung-ia-podaac-startSF"
+        "queueUrl": "arn:aws:sqs:us-west-2:000000000000:hryeung-ia-podaac-startSF"
       },
       "exception": "None",
       "meta": {
@@ -387,7 +387,7 @@ s3_file_content_2 = {
             "granuleRecoveryWorkflow": "OrcaRecoveryWorkflow",
             "rangeIs360": "true",
             "response-endpoint": [
-              "arn:aws:sns:us-west-2:065089468788:hryeung-ia-podaac-provider-response-sns"
+              "arn:aws:sns:us-west-2:000000000000:hryeung-ia-podaac-provider-response-sns"
             ],
             "workflowChoice": {
               "compressed": "false",
@@ -426,13 +426,13 @@ s3_file_content_2 = {
           "0": {
             "name": "hryeung-ia-podaac-discover-granules-tf-module",
             "version": "$LATEST",
-            "arn": "arn:aws:lambda:us-west-2:065089468788:function:hryeung-ia-podaac-discover-granules-tf-module"
+            "arn": "arn:aws:lambda:us-west-2:000000000000:function:hryeung-ia-podaac-discover-granules-tf-module"
           }
         },
         "retries": 0,
         "visibilityTimeout": 1800,
-        "ingest_workflow_sns": "arn:aws:sns:us-west-2:065089468788:hryeung-ia-podaac-provider-input-sns",
-        "queueUrl": "https://sqs.us-west-2.amazonaws.com/065089468788/hryeung-ia-podaac-provider-input-queue"
+        "ingest_workflow_sns": "arn:aws:sns:us-west-2:000000000000:hryeung-ia-podaac-provider-input-sns",
+        "queueUrl": "https://sqs.us-west-2.amazonaws.com/000000000000/hryeung-ia-podaac-provider-input-queue"
       },
       "payload": {
         "granules": [
@@ -571,13 +571,249 @@ sample_cnm_calval = {
                     "dataVersion": "1"
                 },
                 "meta": {
-                    "source": "arn:aws:states:us-west-2:065089468788:stateMachine:hryeung-ia-podaac-DiscoverConvertPublishWorkflow",
+                    "source": "arn:aws:states:us-west-2:000000000000:stateMachine:hryeung-ia-podaac-DiscoverConvertPublishWorkflow",
                     "author": "hryeung",
                     "contact": "hong-kit.r.yeung@jpl.nasa.gov",
                     "execution_name": "514d1636-e0be-129f-0005-2900e7b7b692"
                 }
             }
 
+s3_file_content_tar_gz = {
+            "cumulus_meta": {
+                "cumulus_version": "11.1.7",
+                "execution_name": "90e5bed1-eb8e-4072-8e9f-a49084defeb8",
+                "message_source": "sfn",
+                "queueExecutionLimits": {
+                    "https://sqs.us-west-2.amazonaws.com/000000000000/hryeung-ia-podaac-background-job-queue": 200,
+                    "https://sqs.us-west-2.amazonaws.com/000000000000/hryeung-ia-podaac-backgroundProcessing": 5,
+                    "https://sqs.us-west-2.amazonaws.com/000000000000/hryeung-ia-podaac-big-background-job-queue": 20,
+                    "https://sqs.us-west-2.amazonaws.com/000000000000/hryeung-ia-podaac-dmrpp-background-job-queue": 50,
+                    "https://sqs.us-west-2.amazonaws.com/000000000000/hryeung-ia-podaac-forge-background-job-queue": 200,
+                    "https://sqs.us-west-2.amazonaws.com/000000000000/hryeung-ia-podaac-tig-background-job-queue": 200
+                },
+                "state_machine": "arn:aws:states:us-west-2:000000000000:stateMachine:hryeung-ia-podaac-DiscoverConvertPublishWorkflow",
+                "system_bucket": "hryeung-ia-podaac-internal",
+                "workflow_start_time": 1684773942299,
+                "queueUrl": "arn:aws:sqs:us-west-2:000000000000:hryeung-ia-podaac-startSF"
+            },
+            "exception": "None",
+            "meta": {
+                "buckets": {
+                    "dashboard": {
+                        "name": "hryeung-ia-podaac-dashboard",
+                        "type": "private"
+                    },
+                    "ecco-staging": {
+                        "name": "podaac-ecco-v4r4",
+                        "type": "internal"
+                    },
+                    "glacier": {
+                        "name": "hryeung-ia-podaac-glacier",
+                        "type": "orca"
+                    },
+                    "internal": {
+                        "name": "hryeung-ia-podaac-internal",
+                        "type": "internal"
+                    },
+                    "podaac-dev-swot-simulated-ocean-l2-glorys": {
+                        "name": "podaac-dev-swot-simulated-ocean-l2-glorys",
+                        "type": "internal"
+                    },
+                    "podaac-dev-swot-simulated-ocean-l2-llc4320": {
+                        "name": "podaac-dev-swot-simulated-ocean-l2-llc4320",
+                        "type": "internal"
+                    },
+                    "pre-swot-staging": {
+                        "name": "podaac-dev-pre-swot-ocean-sim",
+                        "type": "internal"
+                    },
+                    "private": {
+                        "name": "hryeung-ia-podaac-private",
+                        "type": "private"
+                    },
+                    "protected": {
+                        "name": "hryeung-ia-podaac-protected",
+                        "type": "protected"
+                    },
+                    "public": {
+                        "name": "hryeung-ia-podaac-public",
+                        "type": "public"
+                    },
+                    "test": {
+                        "name": "podaac-dev-cumulus-test-input-v2",
+                        "type": "internal"
+                    },
+                    "test-staging": {
+                        "name": "podaac-sndbx-staging",
+                        "type": "internal"
+                    }
+                },
+                "cmr": {
+                    "clientId": "POCUMULUS",
+                    "cmrEnvironment": "UAT",
+                    "cmrLimit": 100,
+                    "cmrPageSize": 50,
+                    "oauthProvider": "launchpad",
+                    "passwordSecretName": "hryeung-ia-podaac-message-template-cmr-password20220811164219884600000007",
+                    "provider": "POCUMULUS",
+                    "username": "hkryeung"
+                },
+                "collection": {
+                    "createdAt": 1678143036564,
+                    "updatedAt": 1684442070757,
+                    "name": "SWOTCalVal_ADCP_L0_1.0",
+                    "version": "1.0",
+                    "url_path": "{cmrMetadata.CollectionReference.ShortName}",
+                    "duplicateHandling": "replace",
+                    "granuleId": "^SWOTCalVal_WM_ADCP_L0_RiverRay1_[0-9]{8}T[0-9]{6}_[0-9]{8}T[0-9]{6}_[0-9]{8}T[0-9]{6}$",
+                    "granuleIdExtraction": "^(SWOTCalVal_WM_ADCP_L0_RiverRay1_[0-9]{8}T[0-9]{6}_[0-9]{8}T[0-9]{6}_[0-9]{8}T[0-9]{6})((\\.tar\\.gz)|(\\.xml))?$",
+                    "files": [
+                        {
+                            "type": "data",
+                            "regex": "^SWOTCalVal_WM_ADCP_L0_RiverRay1_[0-9]{8}T[0-9]{6}_[0-9]{8}T[0-9]{6}_[0-9]{8}T[0-9]{6}\\.tar\\.gz$",
+                            "bucket": "public",
+                            "reportToEms": "true",
+                            "sampleFileName": "SWOTCalVal_WM_ADCP_L0_RiverRay1_20220727T191701_20220727T192858_20220920T142800.tar.gz"
+                        },
+                        {
+                            "type": "metadata",
+                            "regex": "^SWOTCalVal_WM_ADCP_L0_RiverRay1_[0-9]{8}T[0-9]{6}_[0-9]{8}T[0-9]{6}_[0-9]{8}T[0-9]{6}\\.xml$",
+                            "bucket": "private",
+                            "reportToEms": "true",
+                            "sampleFileName": "SWOTCalVal_WM_ADCP_L0_RiverRay1_20220727T191701_20220727T192858_20220920T142800.xml"
+                        },
+                        {
+                            "type": "metadata",
+                            "regex": "^SWOTCalVal_WM_ADCP_L0_RiverRay1_[0-9]{8}T[0-9]{6}_[0-9]{8}T[0-9]{6}_[0-9]{8}T[0-9]{6}\\.cmr\\.json$",
+                            "bucket": "public",
+                            "reportToEms": "true",
+                            "sampleFileName": "SWOTCalVal_WM_ADCP_L0_RiverRay1_20220727T191701_20220727T192858_20220920T142800.cmr.json"
+                        },
+                        {
+                            "type": "metadata",
+                            "regex": "^SWOTCalVal_WM_ADCP_L0_RiverRay1_[0-9]{8}T[0-9]{6}_[0-9]{8}T[0-9]{6}_[0-9]{8}T[0-9]{6}\\.tar\\.cmr\\.json$",
+                            "bucket": "public",
+                            "reportToEms": "true",
+                            "sampleFileName": "SWOTCalVal_WM_ADCP_L0_RiverRay1_20220727T191701_20220727T192858_20220920T142800.tar.cmr.json"
+                        }
+                    ],
+                    "reportToEms": "true",
+                    "sampleFileName": "SWOTCalVal_WM_ADCP_L0_RiverRay1_20220727T191701_20220727T192858_20220920T142800.xml",
+                    "meta": {
+                        "rangeIs360": "true",
+                        "discover_tf": {
+                            "depth": 0,
+                            "dir_reg_ex": "",
+                            "batch_delay": 180,
+                            "batch_limit": 20,
+                            "force_replace": "true",
+                            "batch_size": 1,
+                            "discovered_files_count": 2,
+                            "queued_files_count": 2,
+                            "queued_granules_count": 1
+                        },
+                        "provider_path": "temp/SWOT_CALVAL/SWOTCalVal_ADCP_L0_1.0/",
+                        "glacier-bucket": "hryeung-ia-podaac-glacier",
+                        "workflowChoice": {
+                            "dmrpp": "false",
+                            "glacier": "false",
+                            "compressed": "false",
+                            "convertNetCDF": "false",
+                            "readDataFileForMetadata": "false"
+                        },
+                        "calval-xml-regex": "^SWOTCalVal_WM_ADCP_L0_RiverRay1_[0-9]{8}T[0-9]{6}_[0-9]{8}T[0-9]{6}_[0-9]{8}T[0-9]{6}\\.xml$",
+                        "response-endpoint": [
+                            "arn:aws:sns:us-west-2:000000000000:hryeung-ia-podaac-provider-response-sns"
+                        ],
+                        "granuleRecoveryWorkflow": "OrcaRecoveryWorkflow"
+                    }
+                },
+                "distribution_endpoint": "https://jh72u371y2.execute-api.us-west-2.amazonaws.com:9000/DEV/",
+                "launchpad": {
+                    "api": "https://api.launchpad.nasa.gov/icam/api/sm/v1",
+                    "certificate": "launchpad.pfx",
+                    "passphraseSecretName": "hryeung-ia-podaac-message-template-launchpad-passphrase20220811164323373000000013"
+                },
+                "provider": {
+                    "id": "JPL-S3-CalVal",
+                    "globalConnectionLimit": 1000,
+                    "host": "hryeung-ia-podaac-internal",
+                    "protocol": "s3",
+                    "createdAt": 1678208997000,
+                    "updatedAt": 1684442031190
+                },
+                "stack": "hryeung-ia-podaac",
+                "template": "s3://hryeung-ia-podaac-internal/hryeung-ia-podaac/workflow_template.json",
+                "workflow_name": "DiscoverConvertPublishWorkflow",
+                "workflow_tasks": {
+                    "0": {
+                        "name": "hryeung-ia-podaac-discover-granules-tf-module",
+                        "version": "$LATEST",
+                        "arn": "arn:aws:lambda:us-west-2:000000000000:function:hryeung-ia-podaac-discover-granules-tf-module"
+                    }
+                },
+                "ingest_workflow_sns": "arn:aws:sns:us-west-2:000000000000:hryeung-ia-podaac-provider-input-sns"
+            },
+            "payload": {
+                "granules": [
+                    {
+                        "granuleId": "SWOTCalVal_WM_ADCP_L0_RiverRay1_20220727T191701_20220727T192858_20220920T142800",
+                        "dataType": "SWOTCalVal_ADCP_L0_1.0",
+                        "version": "1.0",
+                        "files": [
+                            {
+                                "name": "SWOTCalVal_WM_ADCP_L0_RiverRay1_20220727T191701_20220727T192858_20220920T142800.tar.gz",
+                                "path": "temp/SWOT_CALVAL/SWOTCalVal_ADCP_L0_1.0",
+                                "size": 366165,
+                                "time": 1684773945738,
+                                "url_path": "{cmrMetadata.CollectionReference.ShortName}",
+                                "bucket": "hryeung-ia-podaac-public",
+                                "type": "data"
+                            },
+                            {
+                                "name": "SWOTCalVal_WM_ADCP_L0_RiverRay1_20220727T191701_20220727T192858_20220920T142800.xml",
+                                "path": "temp/SWOT_CALVAL/SWOTCalVal_ADCP_L0_1.0",
+                                "size": 5985,
+                                "time": 1684773945738,
+                                "url_path": "{cmrMetadata.CollectionReference.ShortName}",
+                                "bucket": "hryeung-ia-podaac-private",
+                                "type": "metadata"
+                            }
+                        ]
+                    }
+                ]
+            }
+        }
+
+sample_cnm_calval_tar_gz = {
+        "version": "1.6.0",
+        "provider": "JPL-S3-CalVal",
+        "collection": "SWOTCalVal_ADCP_L0_1.0",
+        "submissionTime": "2023-05-22T16:45:48.581599Z",
+        "identifier": "SWOTCalVal_WM_ADCP_L0_RiverRay1_20220727T191701_20220727T192858_20220920T142800",
+        "product": {
+          "name": "SWOTCalVal_WM_ADCP_L0_RiverRay1_20220727T191701_20220727T192858_20220920T142800",
+          "files": [
+            {
+              "type": "data",
+              "uri": "s3://hryeung-ia-podaac-internal/temp/SWOT_CALVAL/SWOTCalVal_ADCP_L0_1.0/SWOTCalVal_WM_ADCP_L0_RiverRay1_20220727T191701_20220727T192858_20220920T142800.tar.gz",
+              "size": 366165,
+              "name": "SWOTCalVal_WM_ADCP_L0_RiverRay1_20220727T191701_20220727T192858_20220920T142800.tar.gz"
+            },
+            {
+              "type": "metadata",
+              "uri": "s3://hryeung-ia-podaac-internal/temp/SWOT_CALVAL/SWOTCalVal_ADCP_L0_1.0/SWOTCalVal_WM_ADCP_L0_RiverRay1_20220727T191701_20220727T192858_20220920T142800.xml",
+              "size": 5985,
+              "name": "SWOTCalVal_WM_ADCP_L0_RiverRay1_20220727T191701_20220727T192858_20220920T142800.xml"
+            }
+          ],
+          "dataVersion": "1.0"
+        },
+        "meta": {
+          "source": "arn:aws:states:us-west-2:000000000000:stateMachine:hryeung-ia-podaac-DiscoverConvertPublishWorkflow",
+          "execution_name": "90e5bed1-eb8e-4072-8e9f-a49084defeb8"
+        }
+      }
 
 def test_version():
     assert __version__ == '0.2.0'
@@ -661,3 +897,22 @@ def test_granule_to_cnm_cumulus_process_catches_missing_config():
         response = lambda_handler(bad_lambda_input, {})
 
     assert "config key is missing" in str(exc_info.value)
+
+@mock_s3
+def test_granule_to_cnm_translation_swot_calval_tar_gz():
+
+    # Fake aws s3 bucket
+    s3_client = boto3.client('s3', region_name='us-east-1')  # s3 doesn't like us-west-2...
+    test_bucket_name = 'dummy_bucket'
+    test_bucket_key = 'events/dummy_aws_s3_object.json'
+    s3_client.create_bucket(Bucket=test_bucket_name)
+    s3_client.put_object(Body=json.dumps(s3_file_content_tar_gz), Bucket=test_bucket_name, Key=test_bucket_key)
+
+    response = {}
+    try:
+        response = lambda_handler(lambda_input, {})
+    except Exception as e:
+        print(e)
+
+    assert len(response['payload']['cnm_list']) is 1
+    assert response['payload']['cnm_list'][0]['product'] == sample_cnm_calval_tar_gz['product']
