@@ -15,6 +15,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 ### Fixed
 ### Security
+- **Dependabot**
+  - Update `pyproject.toml` to use latest `moto 4.1.14` thus fixing certifi and cryptography versions
 
 ## [v0.2.0] - 2022-08-02
 
