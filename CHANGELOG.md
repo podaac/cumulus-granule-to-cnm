@@ -14,6 +14,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Deprecated
 ### Removed
 ### Fixed
+- **PODAAC-5947**
+  - Update to use Python 3.9 and cumulus-process 1.3.0 
 ### Security
 - **Dependabot**
   - Update `pyproject.toml` to use latest `moto 4.1.14` thus fixing certifi and cryptography versions
