@@ -5,9 +5,9 @@ description = "Basic conversion from granule to cnm"
 authors = ["Hong-Kit Randy Yeung <hong-kit.r.yeung@jpl.nasa.gov>"]
 
 [tool.poetry.dependencies]
-python = "^3.8"
-cumulus-process = "^1.2.0"
-podaac-cloud-notification-message-schema = "^1.6.0"
+python = "^3.9"
+cumulus-process = "^1.3.0"
+podaac-cloud-notification-message-schema = "^1.6.1"
 
 [tool.poetry.dev-dependencies]
 pytest = "^7.3.1"
