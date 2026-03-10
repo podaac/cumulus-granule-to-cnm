@@ -27,8 +27,8 @@ class GranuleToCNM(Process):
 
         self.logger.debug('provider: {}', meta_provider)
 
-        # Building the URI from info provided by provider since the granule itself might not have it
-        uri = f'{meta_provider["protocol"]}://{meta_provider["host"]}/'
+        # Building the URI protocol from info provided by provider since the granule itself might not have it
+        uri_protocol = f'{meta_provider["protocol"]}://'
 
         cnm_list = []
 
@@ -50,7 +50,7 @@ class GranuleToCNM(Process):
             for file in granule['files']:
                 cnm_granule_file = {
                     'type': file.get('type', '') or '',
-                    'uri': uri + (file.get('path', '')).lstrip('/') + '/' + file.get('name', '') or '',
+                    'uri': uri_protocol + file.get('bucket', '') + '/' + file.get('key', '').lstrip('/') or '',
                     'size': file.get('size', 0) or 0
                 }
                 cnm_files.append(cnm_granule_file)
